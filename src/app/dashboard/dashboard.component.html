@@ -1,0 +1,64 @@
+<div class="container">
+    <h1>DashBoard</h1>
+    <div>{{sort|json}}
+        <div class="table-responsive">
+            <table class="table table-hover ">
+                <thead>
+                    <tr>
+                        <th>Source Id
+
+                        </th>
+                        <th (click)="sort('source')">Image
+                        </th>
+                        <th>source name</th>
+                        <th (click)="sort('author')">author
+                            <i class="fa" [ngClass]="{'fa-sort': column != 'author', 
+                                                    'fa-sort-asc': (column == 'author' && !isDesc), 
+                                                    'fa-sort-desc': (column == 'author' && isDesc) }" aria-hidden="true">
+                            </i>
+                        </th>
+                        <th (click)="sort('title')">title
+                            <i class="fa" [ngClass]="{'fa-sort': column != 'title', 
+                                'fa-sort-asc': (column == 'title' && !isDesc), 
+                                'fa-sort-desc': (column == 'title' && isDesc) }" aria-hidden="true">
+                            </i>
+                        </th>
+                        <th (click)="sort('description')">description
+                            <i class="fa" [ngClass]="{'fa-sort': column != 'description', 
+                                'fa-sort-asc': (column == 'description' && !isDesc), 
+                                'fa-sort-desc': (column == 'description' && isDesc) }" aria-hidden="true">
+                            </i>
+                        </th>
+                        <th (click)="sort('url')">url
+                            <i class="fa" [ngClass]="{'fa-sort': column != 'url', 
+                                'fa-sort-asc': (column == 'url' && !isDesc), 
+                                'fa-sort-desc': (column == 'url' && isDesc) }" aria-hidden="true">
+                            </i>
+                        </th>
+
+                        <th (click)="sort('publishedAt')">publishedAt
+                            <i class="fa" [ngClass]="{'fa-sort': column != 'publishedAt', 
+                                'fa-sort-asc': (column == 'publishedAt' && !isDesc), 
+                                'fa-sort-desc': (column == 'publishedAt' && isDesc) }" aria-hidden="true">
+                            </i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let article of news | sortBy: {property: column, direction: direction}">
+                        <td>{{article.source.id}}</td>
+                        <td>
+                            <img [src]="article.urlToImage" alt="">
+                        </td>
+                        <td>{{article.source.name}}</td>
+                        <td>{{article.author}}</td>
+                        <td>{{article.title}}</td>
+                        <td>{{article.description}}</td>
+                        <td>{{article.url}}</td>
+                        <td>{{article.publishedAt}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
